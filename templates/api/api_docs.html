@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Photo App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/static/api-docs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/color-brewer.min.css">
+
+    <!-- scripts -->
+    <script lang="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" integrity="sha512-IaaKO80nPNs5j+VLxd42eK/7sYuXQmr+fyywCNA0e+C6gtQnuCXNtORe9xR4LqGPz5U9VpH+ff41wKs/ZmC3iA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script lang="text/javascript" src="/static/js/api.js" defer></script>
+</head>
+<body>
+
+    {% with user=user %}
+        {% include 'api/navbar-api.html'  %}
+    {% endwith %}
+
+    <main>
+        <aside>
+            {% for key, value in endpoints.items() %}
+                <h3>{{key}}</h3>
+                <ul>
+                {% for item in value %}
+                    <li>
+                        <a href="#{{ item.id }}_bookmark">{{ item.name }}</a> <span>{{ item.method }}</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        </aside>
+
+        <section class="docs">
+            {% for key, value in endpoints.items() %}
+                {% for item in value %}
+                    {% include 'api/include-endpoint-detail.html' %}
+                {% endfor %}
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

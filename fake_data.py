@@ -17,22 +17,6 @@ def generate_image(id:int=None, width:int=300, height:int=200):
         id=image_id, w=width, h=height
     )
 
-def format_display_time(the_date):
-    diff = datetime.now() - the_date
-    days = diff.days
-    hours = diff.seconds // 3600
-    if days == 0:
-        if hours < 0:
-            return 'Just now'
-        elif hours == 1:
-            return '1 hour ago'
-        else:
-            return '{0} hours ago'.format(hours)
-    elif days == 1:
-        return '1 day ago'
-    else:
-        return '{0} days ago'.format(days)
-
 def generate_user():
     '''
     Generates a fake user, which is returned as a dictionary.
@@ -59,6 +43,23 @@ def generate_user():
         'thumb_url': thumb_url 
     }
 
+def format_display_time(the_date):
+    diff = datetime.now() - the_date
+    days = diff.days
+    seconds = diff.seconds
+    hours = seconds // 3600
+    minutes = (seconds // 60) % 60
+    if days == 0:
+        if hours < 0:
+            return 'Just now'
+        elif hours == 1:
+            return '1 hour ago'
+        else:
+            return '{0} hours ago'.format(hours)
+    elif days == 1:
+        return '1 day ago'
+    else:
+        return '{0} days ago'.format(days)
 
 def generate_posts(n=10, width=300, height=200):
     '''

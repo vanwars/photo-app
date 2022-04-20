@@ -1,0 +1,66 @@
+<input class="tab1" id="tab1_{{ item.id }}" type="radio" name="tabs_{{ item.id }}" checked>
+<label class="tab" for="tab1_{{ item.id }}">Interactive Form</label>
+
+<input class="tab2" id="tab2_{{ item.id }}" type="radio" name="tabs_{{ item.id }}">
+<label class="tab" for="tab2_{{ item.id }}">JavaScript</label>
+
+<input class="tab3" id="tab3_{{ item.id }}" type="radio" name="tabs_{{ item.id }}">
+<label class="tab" for="tab3_{{ item.id }}">Python</label>
+
+<section class="content1">
+    <label class="tester" style="padding-top:10px;" for="{{ item.id }}">Endpoint</label>
+    <input id="{{ item.id }}" type="text" value="{{ url_root }}{{ item.endpoint_example }}" />
+    <button onclick="sendRequest(event);" 
+        data-textbox="{{ item.id }}"
+        data-target="{{ item.id }}-response"
+        data-method="{{ item.method|lower }}"
+        data-request_body="{{ item.id }}-request-body">{{ item.method }}</button>
+    {% if item.method in ['POST', 'PATCH'] %}
+        <label class="tester" for="{{ item.id }}-response-body">Request Body</label>
+        <pre class="tester"><code class="language-json editable" id="{{ item.id }}-request-body" contenteditable="true">{{ item.sample_body }}</code></pre>
+    {% endif %}
+
+    <label class="tester" for="{{ item.id }}-status-code">HTTP Status Code</label>
+    <pre class="tester"><code class="language-javascript" id="{{ item.id }}-status-code"></code></pre>      
+
+    <label class="tester" for="{{ item.id }}-response">Response</label>
+    <pre class="tester"><code class="language-json" id="{{ item.id }}-response"></code></pre>                                   
+
+</section>
+<section class="content2">
+
+    <pre class="tester"><code class="language-javascript">{% if item.method in ['POST', 'PATCH'] %}const postData = {{ item.sample_body }};
+
+{% endif %}fetch("{{ url_root }}{{ item.endpoint_example }}", {
+        method: "{{ item.method }}",
+        headers: {
+            'Content-Type': 'application/json',
+        }{% if item.method in ['POST', 'PATCH'] %},
+        body: JSON.stringify(postData){% endif %}
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    });</code></pre>
+
+</section>   
+
+<section class="content3">
+
+    <pre class="tester"><code class="language-python">import requests
+{% if item.method in ['POST', 'PATCH'] %}
+post_data = {{ item.sample_body }};
+
+response = requests.{{ item.method|lower }}(
+    '{{ url_root }}{{ item.endpoint_example }}', 
+    json=post_data
+)
+print('Status Code:', response.status_code)
+print(response.json()){% else %}
+response = requests.{{ item.method|lower }}(
+    '{{ url_root }}{{ item.endpoint_example }}'
+)
+print('Status Code:', response.status_code)
+print(response.json()){% endif %}</code></pre>
+
+</section>     
