@@ -21,19 +21,21 @@ class PostListEndpoint(Resource):
         #   - oneself
         #   - ppl #12 are following
 
-        #1. Query the following table to get the user_ids that #12 is following:
-        # user_ids_tuples = (
-        #     db.session
-        #         .query(Following.following_id)
-        #         .filter(Following.user_id == self.current_user.id)
-        #         .order_by(Following.following_id)
-        #         .all()
-        #     )
-        # print(user_ids_tuples)
-        # user_ids = [id for (id,) in user_ids_tuples]
-        # print(user_ids)
-        # user_ids.append(self.current_user.id)
-        user_ids = get_authorized_user_ids(self.current_user)
+        # 1. Query the following table to get the user_ids that #12 is following:
+        user_ids_tuples = (
+            db.session
+                .query(Following.following_id)
+                .filter(Following.user_id == self.current_user.id)
+                .order_by(Following.following_id)
+                .all()
+            )
+        print(user_ids_tuples)
+        user_ids = [id for (id,) in user_ids_tuples]
+        print(user_ids)
+        user_ids.append(self.current_user.id)
+
+        # alternative method
+        # user_ids = get_authorized_user_ids(self.current_user)
 
         limit = args.get('limit') or 10 # 10 is the default
         #posts = Post.query.limit(limit).all()
