@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-color: #fafafa; */
+    background-color: #f2f2f2;
+}
+
+aside, main, nav {
+    padding: 10px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Comfortaa', cursive;
+}
+a, a:visited, a:hover, a:link {
+    /* font-weight: 600; */
+    /* text-decoration: none; */
+    color: rgb(44, 105, 155);
+}
+a:hover {
+    color: #777;
+}
+button.link {
+    color: rgb(44, 105, 155);
+    background-color: transparent;
+    border-width: 0px;
+}
+button.link:hover {
+    color: #777;
+}
+
+button.link.following {
+    padding: 5px 10px !important;
+}
+button.link.following.active {
+    background-color: white;
+    padding: 5px 10px !important;
+    border: solid 1px #CCC;
+    border-radius: 4px;
+}
+header {
+    margin-top: 20px;
+}
+
+nav {
+    position: sticky;
+    height: 70px;
+    width: 100vw;
+    background-color: white;
+    border-bottom: solid #dbdbdb 1px;
+    left: 0px;
+    top: 0px;
+    padding: 0px 3vw;
+}
+
+nav, nav ul, .card .header, .card .buttons, .card .add-comment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav ul {
+    list-style-type: none;
+}
+li {
+    margin-left: 30px;
+}
+
+aside {
+    position: fixed;
+    right: 0px;
+    top: 70px;
+    width: calc(40vw - 6px);
+    /* background-color: #fafafa; */
+    background-color: #f2f2f2;
+    height: calc(100vh - 100px);
+    padding-left: 30px;
+}
+main {
+    /* margin-top: 70px; */
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#posts {
+    width: 50vw;
+}
+
+.stories {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 50vw;
+    min-width: 540px;
+    border: solid 1px #dbdbdb;
+    margin-bottom: 30px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.stories > div {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stories > div .pic {
+    min-width: 50px;
+    min-height: 50px;
+    border: solid 3px #dbdbdb;
+    border-radius: 27px;
+}
+.stories p {
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 0.80em;
+    color: #999;
+    width: 66px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.card {
+    border: solid 1px #dbdbdb;
+    margin-bottom: 30px;
+    background-color: #fff;
+    width: 50vw;
+    min-width: 540px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+.card .header, .card .info {
+    padding: 10px;
+    color: #444;
+}
+
+.card .buttons {
+    font-size: 1.3em;
+    padding: 5px;
+}
+.card .buttons i {
+    margin-right: 4px;
+}
+
+.card  button.link {
+    font-size: 1em;
+}
+
+.card .caption, .card .comments, .likes {
+    padding: 0px 5px;
+}
+.card .caption p, .card .comments p {
+    margin: 8px 0px 3px 0px;
+    font-size: 0.9em;
+}
+.card .timestamp {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 0.70em !important;
+    margin-bottom: 5px;
+}
+.card .add-comment {
+    border-top: solid 1px #dbdbdb;
+    padding: 10px 15px;
+}
+
+.card .add-comment .input-holder {
+    width: 90%;
+}
+
+.card .add-comment input, .card .add-comment input:focus, .card .add-comment input:focus-visible {
+    border-width: 0px;
+    outline: none;
+    font-size: 0.95em;
+    width: 85%;
+    padding: 10px 0px;
+}
+.card .add-comment i {
+    font-size: 1.3em;
+    margin-right: 10px;
+}
+
+.suggestion-text {
+    color: #666;
+    font-weight: 600;
+    letter-spacing: 0px;
+}
+
+.suggestions section {
+    display: grid;
+    grid-template-columns: 35px 2fr 1fr;
+    align-items: center;
+    width: 25vw;
+}
+.suggestions section > div {
+    padding: 8px;
+    width: 200px;
+}
+.suggestions section p, .suggestions section a {
+    margin: 0px;
+}
+.suggestions section p {
+    color: #333;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.suggestions section a {
+    font-size: 0.8em;
+}
+.suggestions section p:nth-child(2) {
+    color: #666;
+    font-size: 0.8em;
+    font-weight: 400;
+}
+.suggestions section .pic {
+    min-width: 30px;
+    min-height: 30px;
+    border: solid 1px #dbdbdb;
+    border-radius: 15px;
+}
+aside header {
+    display: flex;
+    align-items: center;
+    width: 25vw;
+}
+
+aside header .pic {
+    min-width: 60px;
+    min-height: 60px;
+    border-radius: 33px;
+    border-width: 0px;
+    margin-right: 20px;
+}
+.visuallyhidden {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    aside {
+        display: none;
+    }
+    main {
+        width: 100vw;
+        padding: 0px;
+        align-items: center;
+    }
+    .card, .stories {
+        width: 75vw;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .card, .stories {
+        width: 90vw;
+    }
+}
